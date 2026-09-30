@@ -1,36 +1,41 @@
-<footer>
+<footer class="main-footer">
+    <div class="footer-container">
+        
+        <!-- AVISO TÁTICO DA COMUNIDADE -->
+        <div class="footer-notice">
+            <p>
+                <span class="badge-notice">[AVISO DE REDE]</span>
+                <strong>Projeto Independente:</strong> Mantido por fãs do universo Cyberpunk. 
+                Devido à constante atualização dos dados, alguns arquivos podem apresentar inconsistências temporárias.
+            </p>
+        </div>
 
-    <div class="footer-notice">
-        <p>
-            <strong>Aviso da Comunidade:</strong> Este é um projeto independente feito por fãs. 
-            Como a base de dados é constantemente atualizada, algumas informações podem conter divergências.
-        </p>
+        <!-- CANAIS DE COMUNICAÇÃO -->
+        <div class="footer-contact">
+            <h3>// CANAIS_DE_TRANSMISSAO</h3>
+
+            <p style="margin-bottom: 1rem; color: var(--text-secondary);">
+                Detectou falhas no sistema, deseja enviar relatórios ou contribuir com a base de dados? Estabeleça conexão:
+            </p>
+
+            <ul class="footer-links">
+                <li>
+                    <span class="link-label">E-MAIL:</span> 
+                    <a href="mailto:brenoluiz1958@email.com">brenoluiz1958@email.com</a>
+                </li>
+                <li>
+                    <span class="link-label">REPOSITÓRIO:</span> 
+                    <a href="https://github.com/gelogeladofl" target="_blank" rel="noopener noreferrer">github.com/gelogeladofl</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- COPYRIGHT & STATUS -->
+        <div class="footer-copy">
+            <p>
+                CYBER NEXUS &copy; <?php echo date('Y'); ?> — STATUS: <span style="color: var(--hud-green);">ONLINE</span>
+            </p>
+        </div>
+
     </div>
-
-    <div class="footer-contact">
-        <h3>Canais de Comunicação</h3>
-
-        <p>
-            Encontrou algum erro, tem sugestões de melhoria ou quer contribuir com o projeto? 
-            Entre em contato através dos canais oficiais:
-        </p>
-
-        <ul>
-            <li>
-                <strong>E-mail:</strong> 
-                <a href="mailto:brenoluiz1958@email.com">brenoluiz1958@email.com</a>
-            </li>
-            <li>
-                <strong>GitHub:</strong> 
-                <a href="https://github.com/gelogeladofl" target="_blank" rel="noopener noreferrer">gelogeladofl</a>
-            </li>
-        </ul>
-    </div>
-
-    <div class="footer-copy">
-        <p>
-            Cyber Nexus &copy; <?php echo date('Y'); ?> — Projeto em contínuo desenvolvimento.
-        </p>
-    </div>
-
 </footer>
