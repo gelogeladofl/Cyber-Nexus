@@ -20,5 +20,4 @@
     </div>
 </header>
 
-<!-- ENVOLTÓRIO PRINCIPAL PARA O CONTEÚDO DA PÁGINA -->
 <main class="container">
