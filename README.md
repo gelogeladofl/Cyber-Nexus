@@ -1,4 +1,6 @@
 
+---
+
 # Cyber Nexus — Cyberpunk Management System
 
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
@@ -30,13 +32,13 @@ A aplicação divide-se em um portal central que dá acesso ao **Mural da Comuni
   - [x] Inserção e Atualização com validação e tratamento de tipos (`salvar_implante.php`)
   - [x] Edição com passagem de ID oculto (`editar_implante.php`)
   - [x] Exclusão com confirmação visual (`excluir_implante.php`)
-- [x] **Módulo de Missões da Comunidade (CRUD completo):**
-  - [x] Listagem e cadastro de ideias/contratos dos usuários (`app/missoes/index.php`)
-  - [] Lógica de salvamento e edição (`salvar_missao.php`, `editar_missao.php`)
-  - [] Exclusão de registros (`excluir_missao.php`)
-- [x] **Módulo de Missões do Jogo (`app/missoes/jogo.php`):**
+- [x] **Módulo de Missões da Comunidade (Mural - CRUD completo):**
+  - [x] Listagem e cadastro de ideias/contratos dos usuários (`app/missoes/mural.php`)
+  - [x] Lógica de salvamento e edição (`salvar_missao.php`, `editar_missao.php`)
+  - [x] Exclusão de registros (`excluir_missao.php`)
+- [ ] **Módulo de Missões do Jogo (`app/missoes/jogo.php`):**
   - [x] Exibição de missões oficiais do Cyberpunk 2077 com detalhes de Fixers, distritos e briefings
-  - [] Sistema de comentários dos usuários por missão (`salvar_comentario.php`)
+  - [ ] Sistema de comentários dos usuários por missão (`salvar_comentario.php`)
 - [ ] **Próximos Módulos:**
   - [ ] Agentes (Registro de fixers e mercenários)
   - [ ] Usuários (Autenticação, sessão e controle de acesso)
@@ -65,8 +67,8 @@ atividade final/
 │   │   └── excluir_implante.php # Lógica de remoção de registro (Delete)
 │   │
 │   └── missoes/                 # Módulo de Missões
-│       ├── index.php            # aqui e so o inicio que leva pra os dois outros menu de
-        ├── mural.php            # Mural da comunidade / Ideias dos usuários (CRUD)
+│       ├── index.php            # Hub central de redirecionamento para Mural / Jogo
+│       ├── mural.php            # Mural da comunidade / Ideias dos usuários (CRUD)
 │       ├── salvar_missao.php    # Lógica de inserção/edição de missões
 │       ├── editar_missao.php    # Edição de missões da comunidade
 │       ├── excluir_missao.php   # Exclusão de missões da comunidade
@@ -80,7 +82,7 @@ atividade final/
 
 ---
 
-## Modelagem de Dados
+## Modelagem de Dados (PostgreSQL)
 
 ### Tabela `implantes`
 
@@ -121,7 +123,7 @@ atividade final/
 
 * **Segurança:** Uso de *Prepared Statements* com bind de parâmetros em todas as consultas SQL para evitar **SQL Injection**.
 * **Sanitização de Dados:** Aplicação de `htmlspecialchars()` na exibição e `filter_input()` na captura do `POST`/`GET`.
-* **Navegabilidade:** Uso do operador `../../` para resolução de caminhos em subpastas sem quebrar a inclusão do `header.php` e `footer.php`.
+* **Navegabilidade:** Uso de caminhos relativos consistentes para resolução em subpastas sem quebrar a inclusão de `header.php` e `footer.php`.
 * **Tratamento de Exceções:** Captura de erros de banco com `PDOException`.
 
 ---
@@ -141,6 +143,8 @@ atividade final/
 
 3. **Iniciar o Servidor:**
 * Execute o servidor web (Apache ou o servidor embutido do PHP):
+
+
 ```bash
 php -S localhost:8000
 

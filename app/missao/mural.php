@@ -1,118 +1,107 @@
 <?php
 require_once __DIR__ . '/../../database/conexao.php';
 
-$missoes = [];
-
-try {
-    $stmt = $pdo->query("SELECT * FROM missoes ORDER BY id DESC");
-    $missoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    // Tratamento de erro silencioso em produção ou exibição em desenvolvimento
-}
+// Busca todas as missões da comunidade cadastradas
+$query = $pdo->query("SELECT * FROM missoes ORDER BY criado_em DESC");
+$missoesMural = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Nexus — Missões e Contratos</title>
+    <title>Cyber Nexus — Mural da Comunidade</title>
 </head>
+
 <body>
 
     <?php include __DIR__ . '/../../includes/header.php'; ?>
 
     <main>
         <section>
-            <h2>Cadastrar Novo Contrato</h2>
-            <form action="salvar_missao.php" method="POST">
-                <div>
-                    <label for="nome">Título da Missão:</label><br>
-                    <input type="text" id="nome" name="nome" placeholder="Ex: Resgate no Distrito Kabuki" required>
-                </div>
+            <h1>Mural da Comunidade — Ideias de Contratos</h1>
+            <p>Cadastre suas próprias ideias de missões e compartilhe com a rede.</p>
 
-                <br>
+            <!-- FORMULÁRIO DE CADASTRO (CREATE) -->
+            <fieldset style="margin-bottom: 20px; padding: 15px;">
+                <legend><strong>Postar Novo Contrato / Ideia</strong></legend>
+                <form action="salvar_missao.php" method="POST">
+                    <div style="margin-bottom: 10px;">
+                        <label for="nome">Título da Missão:</label><br>
+                        <input type="text" id="nome" name="nome" required style="width: 100%; max-width: 400px;">
+                    </div>
 
-                <div>
-                    <label for="dificuldade">Dificuldade:</label><br>
-                    <select id="dificuldade" name="dificuldade" required>
-                        <option value="">Selecione...</option>
-                        <option value="Baixa">Baixa</option>
-                        <option value="Média">Média</option>
-                        <option value="Alta">Alta</option>
-                        <option value="Extrema">Extrema</option>
-                    </select>
-                </div>
+                    <div style="margin-bottom: 10px;">
+                        <label for="dificuldade">Dificuldade:</label><br>
+                        <select id="dificuldade" name="dificuldade" required>
+                            <option value="Baixa">Baixa</option>
+                            <option value="Média">Média</option>
+                            <option value="Alta">Alta</option>
+                            <option value="Extrema">Extrema</option>
+                        </select>
+                    </div>
 
-                <br>
+                    <div style="margin-bottom: 10px;">
+                        <label for="recompensa">Recompensa (€$):</label><br>
+                        <input type="number" step="0.01" id="recompensa" name="recompensa" required placeholder="0.00">
+                    </div>
 
-                <div>
-                    <label for="recompensa">Recompensa (€$):</label><br>
-                    <input type="number" step="0.01" id="recompensa" name="recompensa" placeholder="Ex: 25000.00" required>
-                </div>
+                    <div style="margin-bottom: 10px;">
+                        <label for="status">Status:</label><br>
+                        <select id="status" name="status" required>
+                            <option value="Pendente">Pendente</option>
+                            <option value="Em Andamento">Em Andamento</option>
+                            <option value="Concluída">Concluída</option>
+                            <option value="Falhou">Falhou</option>
+                        </select>
+                    </div>
 
-                <br>
+                    <div style="margin-bottom: 10px;">
+                        <label for="descricao">Briefing / Descrição Detalhada:</label><br>
+                        <textarea id="descricao" name="descricao" rows="4" required style="width: 100%; max-width: 500px;"></textarea>
+                    </div>
 
-                <div>
-                    <label for="status">Status do Contrato:</label><br>
-                    <select id="status" name="status" required>
-                        <option value="Pendente">Pendente</option>
-                        <option value="Em Andamento">Em Andamento</option>
-                        <option value="Concluída">Concluída</option>
-                        <option value="Falhou">Falhou</option>
-                    </select>
-                </div>
+                    <button type="submit">Publicar no Mural</button>
+                </form>
+            </fieldset>
 
-                <br>
+            <hr>
 
-                <div>
-                    <label for="descricao">Briefing / Detalhes da Missão:</label><br>
-                    <textarea id="descricao" name="descricao" rows="4" placeholder="Informe os objetivos primários e secundários..."></textarea>
-                </div>
+            <h2>Contratos Postados</h2>
 
-                <br>
-
-                <button type="submit">Publicar Missão</button>
-            </form>
-        </section>
-
-        <hr>
-
-        <section>
-            <h2>Mural de Missões Ativas</h2>
-
-            <table border="1" cellpadding="8" cellspacing="0">
+            <table border="1" cellpadding="8" cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>#</th>
                         <th>Título</th>
                         <th>Dificuldade</th>
-                        <th>Recompensa (€$)</th>
+                        <th>Recompensa</th>
                         <th>Status</th>
                         <th>Descrição</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php if (!empty($missoes)): ?>
-                        <?php foreach ($missoes as $item): ?>
+                    <?php if (empty($missoesMural)): ?>
+                        <tr>
+                            <td colspan="7" align="center">Nenhuma ideia de missão cadastrada no mural ainda.</td>
+                        </tr>
+                    <?php else: ?>
+                        <?php foreach ($missoesMural as $missao): ?>
                             <tr>
-                                <td><?= htmlspecialchars($item['id'] ?? '') ?></td>
-                                <td><strong><?= htmlspecialchars($item['nome'] ?? '') ?></strong></td>
-                                <td><?= htmlspecialchars($item['dificuldade'] ?? '') ?></td>
-                                <td>€$ <?= number_format($item['recompensa'] ?? 0, 2, ',', '.') ?></td>
-                                <td><?= htmlspecialchars($item['status'] ?? '') ?></td>
-                                <td><?= htmlspecialchars($item['descricao'] ?? '') ?></td>
-                                <td>
-                                    <a href="editar_missao.php?id=<?= $item['id'] ?>">Editar</a> | 
-                                    <a href="excluir_missao.php?id=<?= $item['id'] ?>" onclick="return confirm('Cancelar este contrato permanentemente?')">Excluir</a>
+                                <td><?= $missao['id'] ?></td>
+                                <td><strong><?= htmlspecialchars($missao['nome']) ?></strong></td>
+                                <td><?= htmlspecialchars($missao['dificuldade']) ?></td>
+                                <td>€$ <?= number_format($missao['recompensa'], 2, ',', '.') ?></td>
+                                <td><?= htmlspecialchars($missao['status']) ?></td>
+                                <td><?= htmlspecialchars(html_entity_decode($missao['descricao'], ENT_QUOTES, 'UTF-8')) ?></td>
+                                <td align="center">
+                                    <a href="editar_missao.php?id=<?= $missao['id'] ?>">Editar</a> |
+                                    <a href="excluir_missao.php?id=<?= $missao['id'] ?>" onclick="return confirm('Tem certeza que deseja excluir esta missão do mural?')">Excluir</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
-                    <?php else: ?>
-                        <tr>
-                            <td colspan="7">Nenhuma missão cadastrada no mural.</td>
-                        </tr>
                     <?php endif; ?>
                 </tbody>
             </table>
@@ -122,4 +111,5 @@ try {
     <?php include __DIR__ . '/../../includes/footer.php'; ?>
 
 </body>
+
 </html>
