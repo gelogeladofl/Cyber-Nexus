@@ -12,7 +12,7 @@
                 <li><a href="/index.php" class="nav-link">INÍCIO</a></li>
                 <li><a href="/app/missao/index.php" class="nav-link">MISSÕES</a></li>
                 <li><a href="/app/implantes/index.php" class="nav-link">IMPLANTES</a></li>
-                <li><a href="/agentes.php" class="nav-link">AGENTES</a></li>
+                <li><a href="/app/agentes/index.php" class="nav-link">AGENTES</a></li>
                 <li><a href="/cadastros.php" class="nav-link btn-header">+ CADASTROS</a></li>
             </ul>
         </nav>

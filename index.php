@@ -12,8 +12,7 @@
 
     <?php include __DIR__ . '/includes/header.php'; ?>
 
-    <!-- O include do header já abre a tag <main class="container"> se atualizado, 
-         mas caso o seu header.php não tenha a tag <main>, mantemos a classe container abaixo -->
+    
     
     <div class="card">
         <div>
@@ -52,7 +51,7 @@
             <p>
                 Ficha de operacionais, netrunners e fixers.
             </p>
-            <a href="/agentes.php" class="btn btn-primary">ACESSAR MÓDULO</a>
+            <a href="/app/agentes/index.php" class="btn btn-primary">ACESSAR MÓDULO</a>
         </div>
 
     </div>

@@ -27,6 +27,8 @@ try {
     <main>
         <section>
             <form action="salvar_implante.php" method="POST">
+                <fieldset style="margin-bottom: 20px; padding: 15px;">
+                    <legend><strong>Postar um Novo implante</strong></legend>
                 <div>
                     <label for="nome">Nome do Implante:</label><br>
                     <input type="text" id="nome" name="nome" placeholder="Ex: Lâminas de Louva-a-deus" required>
@@ -64,6 +66,7 @@ try {
 
                 <button type="submit">Registrar Implante</button>
             </form>
+            </fieldset>
         </section>
 
         <hr>
