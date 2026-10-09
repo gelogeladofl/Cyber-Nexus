@@ -144,11 +144,9 @@ erDiagram
         timestamp criado_em
     }
 
-        USUARIOS ||--o{ MISSOES : "cria (criador_id)"
+    USUARIOS ||--o{ MISSOES : "cria (criador_id)"
     USUARIOS ||--o{ MISSOES : "assume / realiza (agente_id)"
     USUARIOS ||--o{ IMPLANTES : "cadastra no catalogo (criador_id)"
-    USUARIOS ||--o{ USUARIO_IMPLANTES : "possui / equipa"
-    IMPLANTES ||--o{ USUARIO_IMPLANTES : "esta equipado em"
     USUARIOS ||--o{ COMENTARIOS_MISSOES : "escreve"
 
 

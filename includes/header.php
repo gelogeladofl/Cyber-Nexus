@@ -19,6 +19,7 @@
                 <?php if (isset($_SESSION['usuario_nivel']) && $_SESSION['usuario_nivel'] === 'Admin'): ?>
                 <a href="/app/admin/dashboard.php" style="color: red; font-weight: bold;">[ PAINEL ADMIN ]</a>
                 <?php endif; ?>
+                
             </ul>
             
         </nav>
