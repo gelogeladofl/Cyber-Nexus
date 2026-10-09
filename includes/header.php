@@ -1,3 +1,4 @@
+<?php  session_start();?>
 <header class="main-header">
     <div class="header-container">
         
@@ -14,7 +15,12 @@
                 <li><a href="/app/implantes/index.php" class="nav-link">IMPLANTES</a></li>
                 <li><a href="/app/agentes/index.php" class="nav-link">AGENTES</a></li>
                 <li><a href="/app/usuarios/index.php" class="nav-link btn-header">+ CADASTROS</a></li>
+                
+                <?php if (isset($_SESSION['usuario_nivel']) && $_SESSION['usuario_nivel'] === 'Admin'): ?>
+                <a href="/app/admin/dashboard.php" style="color: red; font-weight: bold;">[ PAINEL ADMIN ]</a>
+                <?php endif; ?>
             </ul>
+            
         </nav>
 
     </div>

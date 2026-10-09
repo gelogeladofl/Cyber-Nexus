@@ -12,22 +12,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!empty($nome) && !empty($apelido) && $email && !empty($senha)) {
         try {
-            // Verifica se e-mail ou apelido já existem
+            // Verifica se e-mail ou apelido já existem no PostgreSQL
             $check = $pdo->prepare("SELECT id FROM usuarios WHERE email = :email OR apelido = :apelido");
             $check->bindValue(':email', $email);
             $check->bindValue(':apelido', $apelido);
             $check->execute();
 
             if ($check->rowCount() > 0) {
-                die("<strong>Erro:</strong> E-mail ou Apelido de Rede já estão cadastrados!");
+                die("<strong>Erro:</strong> Este E-mail ou Apelido de Rede já está em uso por outro operador!");
             }
 
             // Criptografa a senha com BCRYPT
             $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
 
-            // Insere o novo usuário
-            $sql = "INSERT INTO usuarios (nome, apelido, email, senha, criado_em) 
-                    VALUES (:nome, :apelido, :email, :senha, CURRENT_TIMESTAMP)";
+            // Cadastra como 'Operador' por padrão
+            $sql = "INSERT INTO usuarios (nome, apelido, email, senha, nivel_acesso, criado_em) 
+                    VALUES (:nome, :apelido, :email, :senha, 'Operador', CURRENT_TIMESTAMP)";
+            
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(':nome', $nome);
             $stmt->bindValue(':apelido', $apelido);
@@ -35,14 +36,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bindValue(':senha', $senhaHash);
             $stmt->execute();
 
-            header('Location: index.php?status=cadastro_sucesso');
+            // Redireciona para a tela com mensagem de sucesso
+            header('Location: index.php?status=sucesso');
             exit;
 
         } catch (PDOException $e) {
             die("<strong>Erro no Banco de Dados:</strong> " . htmlspecialchars($e->getMessage()));
         }
     } else {
-        die("<strong>Erro de Validação:</strong> Preencha todos os campos corretamente.");
+        die("<strong>Erro de Validação:</strong> Por favor, preencha todos os campos corretamente.");
     }
 } else {
     header('Location: index.php');
