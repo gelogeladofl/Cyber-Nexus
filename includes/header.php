@@ -1,43 +1,51 @@
-
-<?php  session_start();?>
 <?php 
-// Teste de depuração (remover depois)
+// Verifica se já existe uma sessão ativa antes de iniciar
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+require_once 'cyber_style.php';
 ?>
+
 <header class="main-header">
-    <div class="header-container">
+    <div class="header-container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
         
         <!-- LOGO / IDENTITY HUD -->
-        <a href="/index.php" class="logo">
-            <span class="logo-prefix">//</span> CYBER NEXUS
+        <a href="/index.php" class="logo" style="text-decoration: none; font-size: 1.2em; font-weight: bold; color: var(--neon-cyan);">
+            <span class="logo-prefix" style="color: var(--neon-pink);">//</span> CYBER NEXUS
         </a>
 
         <!-- NAVEGAÇÃO PRINCIPAL -->
         <nav class="nav-menu">
-            <ul>
+            <ul style="list-style: none; display: flex; align-items: center; gap: 15px; margin: 0; padding: 0;">
                 <li><a href="/index.php" class="nav-link">INÍCIO</a></li>
                 <li><a href="/app/missao/index.php" class="nav-link">MISSÕES</a></li>
                 <li><a href="/app/implantes/index.php" class="nav-link">IMPLANTES</a></li>
                 <li><a href="/app/agentes/index.php" class="nav-link">AGENTES</a></li>
-                <li><?php if (isset($_SESSION['usuario_id'])): ?>
+                
+                <?php if (isset($_SESSION['usuario_id'])): ?>
                     <!-- Usuário Logado -->
-                    <span style="color: #00ffcc; margin-left: 15px;">
-                        Operador: <strong><?= htmlspecialchars($_SESSION['usuario_apelido']) ?></strong>
-                    </span>
-                    <a href="/app/usuarios/logout.php" style="color: #fcee0a; font-weight: bold; margin-left: 15px;">[ SAIR ]</a>
+                    <li>
+                        <span style="color: var(--neon-cyan); font-family: 'Share Tech Mono', monospace;">
+                            Operador: <strong><?= htmlspecialchars($_SESSION['usuario_apelido'] ?? '') ?></strong>
+                        </span>
+                    </li>
+                    <li>
+                        <a href="/app/usuarios/logout.php" style="color: var(--neon-yellow); font-weight: bold; text-decoration: none;">[ SAIR ]</a>
+                    </li>
                 <?php else: ?>
                     <!-- Usuário Visitante -->
-                    <a href="/app/usuarios/index.php" style="color: #00ffcc; margin-left: 15px;">Acessar a Rede (Login)</a>
+                    <li>
+                        <a href="/app/usuarios/index.php" style="color: var(--neon-cyan); text-decoration: none;">Acessar a Rede (Login)</a>
+                    </li>
                 <?php endif; ?>
-                <?php if (isset($_SESSION['usuario_nivel']) && $_SESSION['usuario_nivel'] === 'Admin'): ?>
-                <a href="/app/admin/dashboard.php" style="color: red; font-weight: bold;">[ PAINEL ADMIN ]</a>
-                <?php endif; ?>
-                
 
+                <?php if (isset($_SESSION['usuario_nivel']) && strcasecmp(trim($_SESSION['usuario_nivel']), 'Admin') === 0): ?>
+                    <li>
+                        <a href="/app/admin/dashboard.php" style="color: var(--neon-pink); font-weight: bold; text-decoration: none; text-shadow: 0 0 8px rgba(255, 0, 85, 0.4);">[ PAINEL ADMIN ]</a>
+                    </li>
+                <?php endif; ?>
             </ul>
-            
         </nav>
 
     </div>
 </header>
-
-<main class="container">
