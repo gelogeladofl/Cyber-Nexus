@@ -1,10 +1,13 @@
 <?php
-session_start();
+// 1. Inicia/recupera a sessão atual
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-// 1. Limpa todas as variáveis armazenadas na sessão
+// 2. Limpa todas as variáveis armazenadas na sessão
 $_SESSION = array();
 
-// 2. Destrói o cookie da sessão no navegador, se existir
+// 3. Destrói o cookie da sessão no navegador
 if (ini_get("session.use_cookies")) {
     $params = session_get_cookie_params();
     setcookie(
@@ -18,9 +21,9 @@ if (ini_get("session.use_cookies")) {
     );
 }
 
-// 3. Destrói a sessão no servidor
+// 4. Destrói a sessão no servidor
 session_destroy();
 
-// 4. Redireciona o usuário para a página de login ou inicial
+// 5. Redireciona o usuário para a tela de login com mensagem de confirmação
 header('Location: /app/usuarios/index.php?status=deslogado');
 exit;

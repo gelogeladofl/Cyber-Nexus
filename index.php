@@ -98,6 +98,7 @@ require_once __DIR__ . '/database/conexao.php';
         <p>
             &gt; Mantenha seu terminal conectado: a transmissão está apenas começando.
         </p>
+        
     </section>
 
     <?php include __DIR__ . '/includes/footer.php'; ?>
