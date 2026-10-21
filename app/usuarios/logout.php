@@ -25,5 +25,5 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // 5. Redireciona o usuário para a tela de login com mensagem de confirmação
-header('Location: /app/usuarios/index.php?status=deslogado');
+header('Location: /aa/app/usuarios/index.php?status=deslogado');
 exit;

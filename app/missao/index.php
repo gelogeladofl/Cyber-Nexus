@@ -37,7 +37,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     </p>
                 </div>
                 <div style="margin-top: 20px;">
-                    <a href="/app/missao/mural.php" style="display: inline-block; width: 100%; text-align: center; box-sizing: border-box; background: transparent; border: 1px solid var(--neon-cyan, #00ffcc); color: var(--neon-cyan, #00ffcc); padding: 10px; text-decoration: none; font-family: 'Share Tech Mono', monospace; font-weight: bold; transition: 0.2s;">
+                    <a href="/aa/app/missao/mural.php" style="display: inline-block; width: 100%; text-align: center; box-sizing: border-box; background: transparent; border: 1px solid var(--neon-cyan, #00ffcc); color: var(--neon-cyan, #00ffcc); padding: 10px; text-decoration: none; font-family: 'Share Tech Mono', monospace; font-weight: bold; transition: 0.2s;">
                         ACESSAR MURAL DE IDEIAS →
                     </a>
                 </div>
@@ -54,7 +54,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     </p>
                 </div>
                 <div style="margin-top: 20px;">
-                    <a href="/app/missao/jogo.php" style="display: inline-block; width: 100%; text-align: center; box-sizing: border-box; background: transparent; border: 1px solid var(--neon-yellow, #fcee0a); color: var(--neon-yellow, #fcee0a); padding: 10px; text-decoration: none; font-family: 'Share Tech Mono', monospace; font-weight: bold; transition: 0.2s;">
+                    <a href="/aa/app/missao/jogo.php" style="display: inline-block; width: 100%; text-align: center; box-sizing: border-box; background: transparent; border: 1px solid var(--neon-yellow, #fcee0a); color: var(--neon-yellow, #fcee0a); padding: 10px; text-decoration: none; font-family: 'Share Tech Mono', monospace; font-weight: bold; transition: 0.2s;">
                         EXPLORAR MISSÕES DO JOGO →
                     </a>
                 </div>

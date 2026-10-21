@@ -15,18 +15,17 @@
 
 ###  Regras de Negócio (RN)
 
-* **RN01 — Autenticação e Unicidade:** O cadastro exige e-mail e apelido de rede (*codinome*) únicos. Não é permitido duplicar e-mail ou apelido na rede.
-* **RN02 — Níveis de Acesso:**
-  * **Operador:** Pode criar missões, cadastrar implantes no catálogo, aceitar contratos do mural e equipar implantes em seu perfil.
-  * **Admin:** Possui privilégios totais. Pode moderar e excluir qualquer conteúdo (missões, implantes, comentários, agentes) e gerenciar permissões de usuários.
-* **RN03 — Atribuição de Missões:**
-  * Uma missão pode ser criada por um **Operador** (`criador_id`).
-  * Uma missão em aberto (`status = 'Pendente'`) só pode ser **aceita por um Operador diferente** (`agente_id`).
-  * Ao ser aceita, o status da missão muda automaticamente para `'Em Andamento'`.
-* **RN04 — Equipamento de Implantes:**
-  * Qualquer Operador pode cadastrar novos modelos no catálogo de implantes (`criador_id`).
-  * Um Operador pode equipar no seu perfil qualquer implante disponível no catálogo. A relação é registrada na tabela `usuario_implantes`.
-* **RN05 — Proteção de Senhas:** Nenhuma senha pode ser salva em texto puro no banco de dados. É obrigatório o uso do algoritmo BCRYPT (`password_hash` / `password_verify`).
+- **RN01 — Autenticação e Unicidade:** O cadastro exige e-mail e apelido de rede (*codinome*) únicos. Não é permitido duplicar e-mail ou apelido na rede.
+- **RN02 — Níveis de Acesso:**
+  - **Operador:** Pode criar missões, cadastrar implantes no catálogo, aceitar contratos do mural e gerenciar fichas.
+  - **Admin:** Possui privilégios totais. Pode moderar e excluir qualquer conteúdo (missões, implantes, agentes) e gerenciar permissões de usuários através do painel central.
+- **RN03 — Atribuição de Missões:**
+  - Uma missão pode ser criada por um **Operador** (`criador_id`).
+  - Uma missão em aberto (`status = 'Pendente'`) pode ser gerenciada ou moderada conforme os fluxos táticos definidos no painel.
+- **RN04 — Equipamento de Implantes:**
+  - Qualquer Operador pode cadastrar novos modelos no catálogo de implantes (`criador_id`).
+  - O catálogo gerencia próteses, sistemas neurais, oculares e armaduras subcutâneas.
+- **RN05 — Proteção de Senhas:** Nenhuma senha pode ser salva em texto puro no banco de dados. É obrigatório o uso do algoritmo BCRYPT (`password_hash` / `password_verify`).
 
 ---
 
@@ -35,55 +34,52 @@
 ###  Requisitos Funcionais (RF)
 
 #### **RF01 — Módulo de Autenticação e Usuários**
-* **RF01.1:** O sistema deve permitir que novos usuários se cadastrem fornecendo nome, apelido, e-mail e senha.
-* **RF01.2:** O sistema deve permitir o login utilizando e-mail **ou** apelido de rede juntamente com a senha.
-* **RF01.3:** O sistema deve manter a sessão ativa durante a navegação entre as páginas.
-* **RF01.4:** O sistema deve permitir o encerramento da sessão (*logout*).
+- **RF01.1:** O sistema deve permitir que novos usuários se cadastrem fornecendo nome, apelido, e-mail e senha.
+- **RF01.2:** O sistema deve permitir o login utilizando e-mail **ou** apelido de rede juntamente com a senha.
+- **RF01.3:** O sistema deve manter a sessão ativa durante a navegação entre as páginas.
+- **RF01.4:** O sistema deve permitir o encerramento da sessão (*logout*).
 
 #### **RF02 — Módulo Administrativo (Admin)**
-* **RF02.1:** O sistema deve disponibilizar um Dashboard restrito com métricas globais do sistema.
-* **RF02.2:** O Admin deve poder visualizar a lista completa de usuários cadastrados.
-* **RF02.3:** O Admin deve poder alterar o nível de acesso de um usuário (promover a `Admin` ou rebaixar a `Operador`).
+- **RF02.1:** O sistema deve disponibilizar um Dashboard restrito com métricas globais do sistema.
+- **RF02.2:** O Admin deve poder visualizar a lista completa de usuários cadastrados.
+- **RF02.3:** O Admin deve poder alterar o nível de acesso de um usuário (promover a `Admin` ou rebaixar a `Operador`).
 
 #### **RF03 — Módulo de Implantes Cibernéticos**
-* **RF03.1:** O sistema deve permitir listar todos os implantes cadastrados no catálogo.
-* **RF03.2:** O sistema deve permitir o cadastro de novos implantes (nome, tipo, preço, descrição).
-* **RF03.3:** O sistema deve permitir que o Admin ou o criador edite as informações de um implante.
-* **RF03.4:** O sistema deve permitir a exclusão de implantes do catálogo.
-* **RF03.5:** O sistema deve permitir que o usuário logado equipe um implante em seu perfil.
+- **RF03.1:** O sistema deve permitir listar todos os implantes cadastrados no catálogo.
+- **RF03.2:** O sistema deve permitir o cadastro de novos implantes (nome, tipo, preço, descrição).
+- **RF03.3:** O sistema deve permitir que o Admin ou o criador edite as informações de um implante.
+- **RF03.4:** O sistema deve permitir a exclusão de implantes do catálogo.
 
 #### **RF04 — Módulo de Missões do Mural (Comunidade)**
-* **RF04.1:** O sistema deve permitir a publicação de novos contratos de missões por usuários logados.
-* **RF04.2:** O sistema deve exibir o mural de missões disponíveis com opção de filtragem por status.
-* **RF04.3:** O sistema deve permitir que um operador aceite uma missão pendente, tornando-se o responsável por ela.
-* **RF04.4:** O sistema deve permitir a edição e a remoção de missões do mural.
+- **RF04.1:** O sistema deve permitir a publicação de novos contratos de missões por usuários logados.
+- **RF04.2:** O sistema deve exibir o mural de missões disponíveis com opção de filtragem por status.
+- **RF04.3:** O sistema deve permitir a edição e a remoção de missões do mural.
 
 #### **RF05 — Módulo de Agentes da Rede**
-* **RF05.1:** O sistema deve permitir cadastrar, listar, editar e excluir registros de Fixers, Mercenários, Netrunners e Solos.
+- **RF05.1:** O sistema deve permitir cadastrar, listar, editar e excluir registros de Fixers, Mercenários, Netrunners e Solos.
 
 #### **RF06 — Módulo de Missões do Jogo (Wiki)**
-* **RF06.1:** O sistema deve exibir as informações técnicas e briefings das missões oficiais do Cyberpunk 2077.
-* **RF06.2:** O sistema deve permitir que usuários logados enviem comentários e estratégias em cada missão.
+- **RF06.1:** O sistema deve exibir as informações técnicas e briefings das missões oficiais do Cyberpunk 2077.
+- **RF06.2:** O sistema deve permitir que usuários logados enviem comentários e estratégias em cada missão.
 
 ---
 
 ###  Requisitos Não Funcionais (RNF)
 
-* **RNF01 — Segurança:** O sistema deve utilizar *Prepared Statements* (PDO) em todas as requisições ao banco para prevenir **SQL Injection**.
-* **RNF02 — Segurança de Acesso:** Páginas e scripts de ação restrita (como exclusão ou administrativas) devem validar a sessão do usuário antes de executar a lógica.
-* **RNF03 — Banco de Dados:** O sistema deve utilizar o SGBD **PostgreSQL** garantindo a integridade referencial através de Chaves Estrangeiras (`FOREIGN KEY`).
-* **RNF04 — Desempenho e Compatibilidade:** Aplicação web leve executável no servidor embutido do PHP (`php -S`) ou Apache (XAMPP).
-* **RNF05 — Usabilidade e Interface:** Design responsivo adaptado para navegação em desktop e dispositivos móveis com temática Cyberpunk.
-* **RNF06 — Padronização de Codificação:** Codificação de caracteres configurada em **UTF-8** no banco e na saída do PHP para preservar acentuação e caracteres especiais.
+- **RNF01 — Segurança:** O sistema deve utilizar *Prepared Statements* (PDO) em todas as requisições ao banco para prevenir **SQL Injection**.
+- **RNF02 — Segurança de Acesso:** Páginas e scripts de ação restrita (como exclusão ou administrativas) devem validar a sessão do usuário antes de executar a lógica.
+- **RNF03 — Banco de Dados:** O sistema deve utilizar o SGBD **PostgreSQL** garantindo a integridade referencial através de Chaves Estrangeiras (`FOREIGN KEY`).
+- **RNF04 — Desempenho e Compatibilidade:** Aplicação web leve executável no servidor embutido do PHP (`php -S`) ou Apache (XAMPP).
+- **RNF05 — Usabilidade e Interface:** Design responsivo adaptado com temática Cyberpunk (estilo Terminal / Wiki corporativa, fontes monoespaçadas e cores em neon).
+- **RNF06 — Padronização de Codificação:** Codificação de caracteres configurada em **UTF-8** no banco e na saída do PHP para preservar acentuação e caracteres especiais.
 
 ---
-
 
 ##  Modelagem do Banco de Dados (DER)
 
 ```mermaid
-erDiagram
 
+erDiagram
     USUARIOS {
         int id PK
         string nome
@@ -116,13 +112,6 @@ erDiagram
         timestamp criado_em
     }
 
-    USUARIO_IMPLANTES {
-        int id PK
-        int usuario_id FK
-        int implante_id FK
-        timestamp instalado_em
-    }
-
     AGENTES {
         int id PK
         string nome
@@ -135,20 +124,8 @@ erDiagram
         timestamp criado_em
     }
 
-    COMENTARIOS_MISSOES {
-        int id PK
-        string missao_chave
-        string autor
-        int usuario_id FK
-        text comentario
-        timestamp criado_em
-    }
-
-    USUARIOS ||--o{ MISSOES : "cria (criador_id)"
-    USUARIOS ||--o{ MISSOES : "assume / realiza (agente_id)"
-    USUARIOS ||--o{ IMPLANTES : "cadastra no catalogo (criador_id)"
-    USUARIOS ||--o{ COMENTARIOS_MISSOES : "escreve"
-
+    USUARIOS ||--o{ MISSOES : "cria"
+    USUARIOS ||--o{ IMPLANTES : "cadastra"
 
 ```
 
@@ -157,52 +134,90 @@ erDiagram
 ##  Estrutura do Projeto
 
 ```text
-atividade final/
-│
-├── database/
-│   ├── conexao.php             # Conexão PDO centralizada com o PostgreSQL
-│   └── database.sql            # Script DDL SQL completo para criação das tabelas
-│
-├── includes/
-│   ├── header.php              # Cabeçalho global com menu dinâmico (Sessão / Admin)
-│   └── footer.php              # Rodapé do sistema
-│
-├── app/
-│   ├── admin/                  # Módulo Restrito do Administrador
-│   │   ├── index.php           # Dashboard do Admin com métricas do sistema
-│   │   ├── usuarios.php        # Gestão e listagem de contas registradas
-│   │   └── alterar_nivel.php   # Lógica para promover ou rebaixar usuários
-│   │
-│   ├── usuarios/               # Módulo de Autenticação
-│   │   ├── index.php           # Tela com formulários de Login e Cadastro
-│   │   ├── login.php           # Validação de credenciais e inicialização da sessão
-│   │   ├── salvar_usuario.php  # Registro de novos operadores com hash BCRYPT
-│   │   ├── logout.php          # Encerramento de sessão
-│   │   └── cadastrar_admin_auto.php # Script utilitário para setup inicial do Admin
-│   │
-│   ├── implantes/              # Módulo do Catálogo de Implantes
-│   │   ├── index.php           # Listagem e cadastro de implantes
-│   │   ├── salvar_implante.php # Lógica de inserção e atualização
-│   │   ├── editar_implante.php # Formulário de edição
-│   │   └── excluir_implante.php# Remoção de registros
-│   │
-│   ├── missoes/                # Módulo de Contratos e Wiki
-│   │   ├── index.php           # Hub do módulo
-│   │   ├── mural.php           # Mural da Comunidade (Contratos criados por usuários)
-│   │   ├── salvar_missao.php   # Lógica de criação/edição de contratos
-│   │   ├── editar_missao.php   # Formulário de edição
-│   │   ├── excluir_missao.php  # Exclusão de missões do mural
-│   │   ├── jogo.php            # Wiki de missões do Cyberpunk 2077
-│   │   └── salvar_comentario.php # Envio de dicas/comentários na wiki
-│   │
-│   └── agentes/                # Módulo de Agentes da Rede
-│       ├── mural.php           # Registro de Fixers, Mercenários e Netrunners
-│       ├── salvar_agente.php   # Inserção/atualização de agentes
-│       ├── editar_agente.php   # Edição de perfil do agente
-│       └── excluir_agente.php  # Remoção de agente
-│
-├── index.php                   # Portal inicial da aplicação
-└── README.md                   # Documentação do projeto
+aa/
+ │  
+ └ atividade final/
+    │
+    ├── database/
+    │   ├── conexao.php             # Conexão PDO centralizada com o PostgreSQL
+    │   └── database.sql            # Script DDL SQL completo para criação das tabelas
+    │
+    ├── includes/
+    │   ├── cyber_style.php         # Design System Cyberpunk (CSS global e variáveis)
+    │   ├── header.php              # Cabeçalho global com menu dinâmico (Sessão / Admin)
+    │   └── footer.php              # Rodapé do sistema
+    │
+    ├── app/
+    │   ├── admin/                  # Módulo Restrito do Administrador
+    │   │   ├── dashboard.php       # Dashboard do Admin com métricas do sistema
+    │   │   ├── usuarios.php        # Gestão e listagem de contas registradas
+    │   │   ├── moderar_missoes.php # Moderação global de missões do mural
+    │   │   ├── moderar_agentes.php # Moderação global de fichas de agentes
+    │   │   ├── moderar_implantes.php # Moderação global do catálogo de implantes
+    │   │   ── alterar_nivel.php   # Lógica para promover ou rebaixar usuários
+    │   │
+    │   ├── usuarios/               # Módulo de Autenticação
+    │   │   ├── index.php           # Tela com formulários de Login e Cadastro
+    │   │   ├── login.php           # Validação de credenciais e inicialização da sessão
+    │   │   ├── salvar_usuario.php  # Registro de novos operadores com hash BCRYPT
+    │   │   └── logout.php          # Encerramento de sessão
+    │   │
+    │   ├── implantes/              # Módulo do Catálogo de Implantes
+    │   │   ├── index.php           # Listagem e cadastro de implantes
+    │   │   ├── salvar_implante.php # Lógica de inserção e atualização
+    │   │   ├── editar_implante.php # Formulário de edição
+    │   │   └── excluir_implante.php# Remoção de registros
+    │   │
+    │   ├── missao/                 # Módulo de Contratos e Wiki
+    │   │   ├── index.php           # Hub do portal de missões
+    │   │   ├─└─ mural.php           # Mural da Comunidade (Contratos criados por usuários)
+    │   │   ├── salvar_missao.php   # Lógica de criação/edição de contratos
+    │   │   ├── editar_missao.php   # Formulário de edição
+    │   │   ├── excluir_missao.php  # Exclusão de missões do mural
+    │   │   ├── jogo.php            # Wiki de missões principais do Cyberpunk 2077
+    │   │   └── salvar_comentario.php # Envio de dicas/comentários na wiki
+    │   │
+    │   └── agentes/                # Módulo de Agentes da Rede
+    │       ├── index.php           # Registro de Fixers, Mercenários e Netrunners
+    │       ├── salvar_agente.php   # Inserção/atualização de agentes
+    │       ├── editar_agente.php   # Edição de perfil do agente
+    │       └── excluir_agente.php  # Remoção de agente
+    │
+    ├── index.php                   # Portal inicial da aplicação (Terminal Central)
+    └── README.md                   # Documentação do projeto
+
+```
+
+---
+
+O projeto **Cyber Nexus** está totalmente redondo, estruturado e com o design cyberpunk ajustado em todos os módulos e no rodapé!
+
+Como você pediu para adicionar a orientação de criar a pasta **`aa`** na raiz, atualizei o bloco final da documentação abaixo para que você possa copiar e colar direto no seu **`README.md`** se quiser deixar tudo documentado de forma impecável.
+
+---
+
+###  Organização da Estrutura de Pastas (Diretório Raiz)
+
+Para manter a compatibilidade absoluta com os caminhos relativos dos arquivos (`__DIR__` e includes globais), certifique-se de que a estrutura de diretórios esteja organizada da seguinte forma:
+
+```text
+aa/
+ └─ atividade final/
+    ├── database/
+    │   ├── conexao.php
+    │   └── cyber_nexusdump.sql
+    ├── includes/
+    │   ├── cyber_style.php
+    │   ├── header.php
+    │   └── footer.php
+    ├── app/
+    │   ├── admin/
+    │   ├── usuarios/
+    │   ├── implantes/
+    │   ├── missao/
+    │   └── agentes/
+    ├── index.php
+    └── README.md
 
 ```
 
@@ -212,20 +227,23 @@ atividade final/
 
 1. **Configurar o Banco de Dados:**
 * Crie o banco de dados `cyber_nexus` no PostgreSQL.
-* Execute o script contido em `database/database.sql`.
+* Execute o script contido em `database/cyber_nexusdump.sql` para estruturar as tabelas.
 
 
 2. **Configurar a Conexão PHP:**
-* Ajuste as credenciais no arquivo `database/conexao.php`.
+* Ajuste as credenciais de acesso (host, porta, nome do banco, usuário e senha) no arquivo `database/conexao.php`.
 
 
 3. **Iniciar o Servidor Web:**
+Abra o terminal na pasta raiz do projeto (`aa/atividade final/`) e execute:
 ```bash
 php -S localhost:8000
 
 ```
 
 
-* Acesse `http://localhost:8000` no navegador.
+4. **Acessar a Aplicação:**
+* Abra o seu navegador e acesse: `http://localhost:8000`
+
 
 

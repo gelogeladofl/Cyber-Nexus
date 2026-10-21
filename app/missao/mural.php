@@ -108,7 +108,6 @@ try {
             <table style="width: 100%; border-collapse: collapse; font-family: 'Share Tech Mono', monospace; font-size: 0.95em;">
                 <thead>
                     <tr style="background: #111827; color: var(--neon-cyan, #00ffcc); text-align: left;">
-                        <th style="padding: 12px; border-bottom: 1px solid var(--border-cyber, #1f304a);">#ID</th>
                         <th style="padding: 12px; border-bottom: 1px solid var(--border-cyber, #1f304a);">TÍTULO / AUTOR</th>
                         <th style="padding: 12px; border-bottom: 1px solid var(--border-cyber, #1f304a);">RISCO</th>
                         <th style="padding: 12px; border-bottom: 1px solid var(--border-cyber, #1f304a);">RECOMPENSA</th>

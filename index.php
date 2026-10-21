@@ -42,7 +42,7 @@ require_once __DIR__ . '/database/conexao.php';
                     </p>
                 </div>
                 <div style="margin-top: 15px;">
-                    <a href="/app/implantes/index.php" style="display: inline-block; text-align: center; width: 100%; box-sizing: border-box; background: transparent; border: 1px solid var(--neon-cyan, #00ffcc); color: var(--neon-cyan, #00ffcc); padding: 8px 12px; text-decoration: none; font-family: 'Share Tech Mono', monospace; font-weight: bold; transition: 0.2s;">ACESSAR MÓDULO</a>
+                    <a href="/aa/app/implantes/index.php" style="display: inline-block; text-align: center; width: 100%; box-sizing: border-box; background: transparent; border: 1px solid var(--neon-cyan, #00ffcc); color: var(--neon-cyan, #00ffcc); padding: 8px 12px; text-decoration: none; font-family: 'Share Tech Mono', monospace; font-weight: bold; transition: 0.2s;">ACESSAR MÓDULO</a>
                 </div>
             </div>
 
@@ -54,7 +54,7 @@ require_once __DIR__ . '/database/conexao.php';
                     </p>
                 </div>
                 <div style="margin-top: 15px;">
-                    <a href="/app/missao/index.php" style="display: inline-block; text-align: center; width: 100%; box-sizing: border-box; background: transparent; border: 1px solid var(--neon-cyan, #00ffcc); color: var(--neon-cyan, #00ffcc); padding: 8px 12px; text-decoration: none; font-family: 'Share Tech Mono', monospace; font-weight: bold; transition: 0.2s;">ACESSAR MÓDULO</a>
+                    <a href="/aa/app/missao/index.php" style="display: inline-block; text-align: center; width: 100%; box-sizing: border-box; background: transparent; border: 1px solid var(--neon-cyan, #00ffcc); color: var(--neon-cyan, #00ffcc); padding: 8px 12px; text-decoration: none; font-family: 'Share Tech Mono', monospace; font-weight: bold; transition: 0.2s;">ACESSAR MÓDULO</a>
                 </div>
             </div>
 
@@ -66,7 +66,7 @@ require_once __DIR__ . '/database/conexao.php';
                     </p>
                 </div>
                 <div style="margin-top: 15px;">
-                    <a href="/app/agentes/index.php" style="display: inline-block; text-align: center; width: 100%; box-sizing: border-box; background: transparent; border: 1px solid var(--neon-cyan, #00ffcc); color: var(--neon-cyan, #00ffcc); padding: 8px 12px; text-decoration: none; font-family: 'Share Tech Mono', monospace; font-weight: bold; transition: 0.2s;">ACESSAR MÓDULO</a>
+                    <a href="/aa/app/agentes/index.php" style="display: inline-block; text-align: center; width: 100%; box-sizing: border-box; background: transparent; border: 1px solid var(--neon-cyan, #00ffcc); color: var(--neon-cyan, #00ffcc); padding: 8px 12px; text-decoration: none; font-family: 'Share Tech Mono', monospace; font-weight: bold; transition: 0.2s;">ACESSAR MÓDULO</a>
                 </div>
             </div>
 
