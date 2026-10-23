@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 session_write_close();
 
                 // Redireciona para o portal principal
-                header('Location: /aa/index.php');
+                header('Location: /cyber-nexus/index.php');
                 exit;
             } else {
                 die("<h3 style='color: red;'>Erro: Senha incorreta para o usuário '{$login}'.</h3><a href='index.php'>Voltar</a>");

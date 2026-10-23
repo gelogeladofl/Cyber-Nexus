@@ -1,4 +1,3 @@
-
 # Cyber Nexus — Cyberpunk Management System
 
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
@@ -13,10 +12,10 @@
 
 ##  Especificação do Sistema & Regras de Negócio
 
-###  Regras de Negócio (RN)
+### Regras de Negócio (RN)
 
 - **RN01 — Autenticação e Unicidade:** O cadastro exige e-mail e apelido de rede (*codinome*) únicos. Não é permitido duplicar e-mail ou apelido na rede.
-- **RN02 — Níveis de Acesso:**
+- **RN02 — Níveis de Acesso:**'
   - **Operador:** Pode criar missões, cadastrar implantes no catálogo, aceitar contratos do mural e gerenciar fichas.
   - **Admin:** Possui privilégios totais. Pode moderar e excluir qualquer conteúdo (missões, implantes, agentes) e gerenciar permissões de usuários através do painel central.
 - **RN03 — Atribuição de Missões:**
@@ -78,7 +77,6 @@
 ##  Modelagem do Banco de Dados (DER)
 
 ```mermaid
-
 erDiagram
     USUARIOS {
         int id PK
@@ -134,13 +132,11 @@ erDiagram
 ##  Estrutura do Projeto
 
 ```text
-aa/
- │  
- └ atividade final/
+cyber-nexus/
     │
     ├── database/
     │   ├── conexao.php             # Conexão PDO centralizada com o PostgreSQL
-    │   └── database.sql            # Script DDL SQL completo para criação das tabelas
+    │   └── cyber_nexusdump.sql     # Script DDL SQL completo para criação das tabelas
     │
     ├── includes/
     │   ├── cyber_style.php         # Design System Cyberpunk (CSS global e variáveis)
@@ -154,7 +150,7 @@ aa/
     │   │   ├── moderar_missoes.php # Moderação global de missões do mural
     │   │   ├── moderar_agentes.php # Moderação global de fichas de agentes
     │   │   ├── moderar_implantes.php # Moderação global do catálogo de implantes
-    │   │   ── alterar_nivel.php   # Lógica para promover ou rebaixar usuários
+    │   │   └── alterar_nivel.php   # Lógica para promover ou rebaixar usuários
     │   │
     │   ├── usuarios/               # Módulo de Autenticação
     │   │   ├── index.php           # Tela com formulários de Login e Cadastro
@@ -170,7 +166,7 @@ aa/
     │   │
     │   ├── missao/                 # Módulo de Contratos e Wiki
     │   │   ├── index.php           # Hub do portal de missões
-    │   │   ├─└─ mural.php           # Mural da Comunidade (Contratos criados por usuários)
+    │   │   ├── mural.php           # Mural da Comunidade (Contratos criados por usuários)
     │   │   ├── salvar_missao.php   # Lógica de criação/edição de contratos
     │   │   ├── editar_missao.php   # Formulário de edição
     │   │   ├── excluir_missao.php  # Exclusão de missões do mural
@@ -190,60 +186,26 @@ aa/
 
 ---
 
-O projeto **Cyber Nexus** está totalmente redondo, estruturado e com o design cyberpunk ajustado em todos os módulos e no rodapé!
-
-Como você pediu para adicionar a orientação de criar a pasta **`aa`** na raiz, atualizei o bloco final da documentação abaixo para que você possa copiar e colar direto no seu **`README.md`** se quiser deixar tudo documentado de forma impecável.
-
----
-
-###  Organização da Estrutura de Pastas (Diretório Raiz)
-
-Para manter a compatibilidade absoluta com os caminhos relativos dos arquivos (`__DIR__` e includes globais), certifique-se de que a estrutura de diretórios esteja organizada da seguinte forma:
-
-```text
-aa/
- └─ atividade final/
-    ├── database/
-    │   ├── conexao.php
-    │   └── cyber_nexusdump.sql
-    ├── includes/
-    │   ├── cyber_style.php
-    │   ├── header.php
-    │   └── footer.php
-    ├── app/
-    │   ├── admin/
-    │   ├── usuarios/
-    │   ├── implantes/
-    │   ├── missao/
-    │   └── agentes/
-    ├── index.php
-    └── README.md
-
-```
-
----
-
 ##  Como Executar o Projeto
 
 1. **Configurar o Banco de Dados:**
 * Crie o banco de dados `cyber_nexus` no PostgreSQL.
-* Execute o script contido em `database/cyber_nexusdump.sql` para estruturar as tabelas.
+* Execute o script contido em `database/cyber_nexusdump.sql` para criar todas as tabelas com suporte a campos numéricos expandidos.
 
 
 2. **Configurar a Conexão PHP:**
-* Ajuste as credenciais de acesso (host, porta, nome do banco, usuário e senha) no arquivo `database/conexao.php`.
+* Ajuste as credenciais (host, porta, nome do banco, usuário e senha) no arquivo `database/conexao.php`.
 
 
 3. **Iniciar o Servidor Web:**
-Abra o terminal na pasta raiz do projeto (`aa/atividade final/`) e execute:
+Abra o terminal na pasta do projeto (`/cyber-nexus`) e execute:
+
 ```bash
 php -S localhost:8000
 
 ```
 
 
-4. **Acessar a Aplicação:**
-* Abra o seu navegador e acesse: `http://localhost:8000`
-
+* Acesse `http://localhost:8000` no seu navegador.
 
 
